@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require_once 'functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,14 +63,9 @@ session_start();
                             </div>
                             <div class="col-xl-6 ml-auto mr-auto">
                                 <div class="card p-4 rounded-plus bg-faded">
-                                    <?php if (isset($_SESSION['error'])): ?>
-                                    <div class="alert alert-danger text-dark" role="alert">
-                                        <?php echo $_SESSION['error'];
-                                        unset($_SESSION['error']);
-                                        ?>
-                                    </div>
-                                    <?php endif; ?>
-                                    <form id="js-login" novalidate="" action="functions/registration.php" method="post">
+                                    <?php display_flesh_message('danger'); ?>
+
+                                    <form id="js-login" novalidate="" action="registration.php" method="post">
                                         <div class="form-group">
                                             <label class="form-label" for="emailverify">Email</label>
                                             <input type="email" id="emailverify" name="email" class="form-control" placeholder="Эл. адрес" required>
