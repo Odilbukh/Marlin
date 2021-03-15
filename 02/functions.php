@@ -31,15 +31,17 @@ function add_user($email, $password)
 
 function set_flash_message($key, $message)
 {
-    $_SESSION[$key] = $message;
+    $_SESSION['key'] = $key;
+    $_SESSION['message'] = $message;
 }
 
-function display_flesh_message($key)
+function display_flesh_message()
 {
-if (isset($_SESSION[$key])) {
-    echo "<div class=\"alert alert-{$key} text-dark\" role=\"alert\"> {$_SESSION[$key]} </div>";
+if (isset($_SESSION['key'])) {
+    echo "<div class=\"alert alert-{$_SESSION['key']} text-dark\" role=\"alert\"> {$_SESSION['message']} </div>";
 
-    unset($_SESSION[$key]);
+    unset($_SESSION['message']);
+    unset($_SESSION['key']);
     }
 }
 
@@ -47,4 +49,27 @@ function redirect_to($path)
 {
     header("Location: {$path}");
     exit;
+}
+
+function login($email, $password)
+{
+    $user = get_user_by_email($email);
+
+    if (empty($user))
+    {
+        return false;
+    }
+    else
+    {
+        $check_pass = password_verify($password, $user['password']);
+        if ($check_pass == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }
