@@ -88,8 +88,6 @@ function is_log_in()
 
 function is_admin($email)
 {
-    $dsn = "mysql:host=localhost; dbname=marlin_2";
-    $pdo = new PDO($dsn, 'root', 'root');
 
     $user = get_user_by_email($email);
 
