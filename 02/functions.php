@@ -64,12 +64,55 @@ function login($email, $password)
         $check_pass = password_verify($password, $user['password']);
         if ($check_pass == true)
         {
-            return true;
+            return $_SESSION['log-in'] = $user;
         }
         else
         {
             return false;
         }
     }
+}
 
+function is_log_in()
+{
+    if (isset($_SESSION['log-in']) && !empty($_SESSION['log-in']))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+function is_admin($email)
+{
+    $dsn = "mysql:host=localhost; dbname=marlin_2";
+    $pdo = new PDO($dsn, 'root', 'root');
+
+    $user = get_user_by_email($email);
+
+    $role = $user['role'];
+
+    if ($role == 'admin')
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function get_users_list()
+{
+    $dsn = "mysql:host=localhost; dbname=marlin_2";
+    $pdo = new PDO($dsn, 'root', 'root');
+
+    $sql = 'SELECT * FROM users';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $users_list;
 }
