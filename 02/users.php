@@ -38,7 +38,7 @@ $users_list = get_users_list();
                         <a class="nav-link" href="page_login.php">Войти</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="page_login.php"  >Выйти</a>
+                        <a class="nav-link" href="logout.php"  >Выйти</a>
                     </li>
                 </ul>
             </div>
