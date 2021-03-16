@@ -54,7 +54,7 @@ $users_list = get_users_list();
             </div>
             <div class="row">
                 <div class="col-xl-12">
-                    <?php if ($auth_user['role'] == 'admin'): ?>
+                    <?php if (is_admin($auth_user['email']) == true): ?>
                     <a class="btn btn-success" href="create_user.html">Добавить</a>
                     <?php endif; ?>
                     <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
@@ -80,14 +80,15 @@ $users_list = get_users_list();
                                     <span class="rounded-circle profile-image d-block " style="background-image:url('<?= $user['avatar']; ?>'); background-size: cover;"></span>
                                 </span>
                                 <div class="info-card-text flex-1">
-                                    <a href="edit?id=<?= $user['id']; ?>" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
+
+                                    <a href="<?php if (is_admin($auth_user['email']) == true || $auth_user['id'] == $user['id']): ?> edit?id=<?= $user['id']; ?> <?php endif; ?>"  class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
                                         <?= $user['fullname']; ?>
-                                        <?php if ($auth_user['role'] == 'admin' || $auth_user['id'] == $user['id']): ?>
+                                        <?php if (is_admin($auth_user['email']) == true || $auth_user['id'] == $user['id']): ?>
                                         <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                                         <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                                         <?php endif; ?>
                                     </a>
-
+                                    <?php if (is_admin($auth_user['email']) == true || $auth_user['id'] == $user['id']): ?>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="edit.php">
                                             <i class="fa fa-edit"></i>
@@ -107,6 +108,7 @@ $users_list = get_users_list();
                                             Удалить
                                         </a>
                                     </div>
+                                    <?php endif; ?>
 
                                     <span class="text-truncate text-truncate-xl"><?= $user['profesion']; ?>, <?= $user['company']; ?></span>
                                 </div>
