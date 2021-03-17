@@ -57,7 +57,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
             <?= display_flesh_message(); ?>
           </br>
         </div>
-        <form action="add_user.php" method="post">
+        <form action="add_user.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -118,9 +118,9 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                 <div class="form-group">
                                     <label class="form-label" for="example-select">Выберите статус</label>
                                     <select class="form-control" id="example-select" name="status">
-                                        <option>Онлайн</option>
-                                        <option>Отошел</option>
-                                        <option>Не беспокоить</option>
+                                        <option value="success">Онлайн</option>
+                                        <option value="warning">Отошел</option>
+                                        <option value="danger">Не беспокоить</option>
                                     </select>
                                 </div>
 

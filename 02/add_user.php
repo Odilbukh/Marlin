@@ -5,7 +5,7 @@ require_once 'functions.php';
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$fullname = $_POST['fullnanme'];
+$fullname = $_POST['fullname'];
 $company = $_POST['company'];
 $adres = $_POST['adres'];
 $phone = $_POST['phone'];
@@ -15,9 +15,11 @@ $vk = $_POST['vk'];
 $tg = $_POST['tg'];
 $ins = $_POST['ins'];
 
+
 if(!get_user_by_email($email))
 {
   $user_id = add_user($email, $password);
+  $user_id = intval($user_id);
 
   edit_user_info($fullname, $company, $phone, $adres, $user_id);
   upload_avatar($avatar, $user_id);
