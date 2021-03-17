@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once 'functions.php';
+
+$auth_user = $_SESSION['log-in'];
+
+if (is_null(is_log_in()) || !is_admin($auth_user['email']))
+{
+    redirect_to('page_login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +38,7 @@
                     <a class="nav-link" href="page_login.php">Войти</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a>
+                    <a class="nav-link" href="logout.php">Выйти</a>
                 </li>
             </ul>
         </div>
