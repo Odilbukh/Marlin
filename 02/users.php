@@ -90,7 +90,7 @@ $users_list = get_users_list();
                                     </a>
                                     <?php if (is_admin($auth_user['email']) == true || $auth_user['id'] == $user['id']): ?>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="edit.php">
+                                        <a class="dropdown-item" href="edit.php?id=<?=$user['id'];?>">
                                             <i class="fa fa-edit"></i>
                                         Редактировать</a>
                                         <a class="dropdown-item" href="security.html">

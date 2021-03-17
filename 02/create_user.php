@@ -52,7 +52,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
 
 
         </div>
-        <form action="">
+        <form action="add_user.php" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -64,25 +64,25 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" id="simpleinput" class="form-control">
+                                    <input type="text" id="simpleinput" name="fullname" class="form-control">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input type="text" id="simpleinput" class="form-control">
+                                    <input type="text" id="simpleinput" name="company" class="form-control">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input type="text" id="simpleinput" class="form-control">
+                                    <input type="text" id="simpleinput" name="phone" class="form-control">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Адрес</label>
-                                    <input type="text" id="simpleinput" class="form-control">
+                                    <input type="text" id="simpleinput" name="adres" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -99,20 +99,20 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                 <!-- email -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Email</label>
-                                    <input type="text" id="simpleinput" class="form-control">
+                                    <input type="text" id="simpleinput" name="email" class="form-control">
                                 </div>
 
                                 <!-- password -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Пароль</label>
-                                    <input type="password" id="simpleinput" class="form-control">
+                                    <input type="password" id="simpleinput" name="password" class="form-control">
                                 </div>
 
                                 
                                 <!-- status -->
                                 <div class="form-group">
                                     <label class="form-label" for="example-select">Выберите статус</label>
-                                    <select class="form-control" id="example-select">
+                                    <select class="form-control" id="example-select" name="status">
                                         <option>Онлайн</option>
                                         <option>Отошел</option>
                                         <option>Не беспокоить</option>
@@ -121,7 +121,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
 
                                 <div class="form-group">
                                     <label class="form-label" for="example-fileinput">Загрузить аватар</label>
-                                    <input type="file" id="example-fileinput" class="form-control-file">
+                                    <input type="file" id="example-fileinput" name="avatar" class="form-control-file">
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                                     </span>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control border-left-0 bg-transparent pl-0">
+                                            <input type="text" name="vk" class="form-control border-left-0 bg-transparent pl-0">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -162,7 +162,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                                     </span>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control border-left-0 bg-transparent pl-0">
+                                            <input type="text" name="tg" class="form-control border-left-0 bg-transparent pl-0">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -176,11 +176,11 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                                     </span>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control border-left-0 bg-transparent pl-0">
+                                            <input type="text" name="ins" class="form-control border-left-0 bg-transparent pl-0">
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                        <button class="btn btn-success">Добавить</button>
+                                        <button class="btn btn-success" type="submit">Добавить</button>
                                     </div>
                                 </div>
                             </div>
