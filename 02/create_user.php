@@ -34,11 +34,16 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
+              </li>
+              <?php if (is_log_in() == false): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="page_login.php">Войти</a>
                 </li>
+              <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Выйти</a>
+                    <a class="nav-link" href="logout.php"  >Выйти</a>
                 </li>
             </ul>
         </div>
@@ -48,9 +53,9 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-plus-circle'></i> Добавить пользователя
             </h1>
-
-
-
+          </br>
+            <?= display_flesh_message(); ?>
+          </br>
         </div>
         <form action="add_user.php" method="post">
             <div class="row">
@@ -86,7 +91,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="col-xl-6">
@@ -108,7 +113,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                     <input type="password" id="simpleinput" name="password" class="form-control">
                                 </div>
 
-                                
+
                                 <!-- status -->
                                 <div class="form-group">
                                     <label class="form-label" for="example-select">Выберите статус</label>
@@ -125,7 +130,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -185,7 +190,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -199,7 +204,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
         $(document).ready(function()
         {
 
-          
+
         });
 
     </script>

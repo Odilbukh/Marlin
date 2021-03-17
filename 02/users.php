@@ -34,9 +34,14 @@ $users_list = get_users_list();
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
+                  </li>
+                  <?php if (is_log_in() == false): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="page_login.php">Войти</a>
                     </li>
+                  <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php"  >Выйти</a>
                     </li>
@@ -145,7 +150,7 @@ $users_list = get_users_list();
 
             </div>
         </main>
-     
+
         <!-- BEGIN Page Footer -->
         <footer class="page-footer" role="contentinfo">
             <div class="d-flex align-items-center flex-1 text-muted">
@@ -158,7 +163,7 @@ $users_list = get_users_list();
                 </ul>
             </div>
         </footer>
-        
+
     </body>
 
     <script src="js/vendors.bundle.js"></script>

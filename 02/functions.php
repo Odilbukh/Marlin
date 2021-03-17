@@ -114,3 +114,48 @@ function get_users_list()
     $users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $users_list;
 }
+
+function edit_user_info($fullname, $company, $phone, $adres, $user_id)
+{
+  $dsn = "mysql:host=localhost; dbname=marlin_2";
+  $pdo = new PDO($dsn, 'root', 'root');
+
+  $sql = 'UPDATE users SET fullname=:fullname, company=:company, phone=:phone, adres=:adres WHERE id =:user_id';
+  $stmt->$pdo->prepare($sql);
+  $stmt->execute(['fullname' => $fullname, 'company' => $company, 'phone' => $phone, 'adres' => $adres, 'user_id' => $user_id]);
+}
+
+function set_status($status, $user_id)
+{
+  $dsn = "mysql:host=localhost; dbname=marlin_2";
+  $pdo = new PDO($dsn, 'root', 'root');
+
+  $sql = 'UPDATE users SET status=:status WHERE id =:user_id';
+  $stmt->$pdo->prepare($sql);
+  $stmt->execute(['status' => $status, 'user_id' => $user_id]);
+}
+
+function upload_avatar($avatar, $user_id)
+{
+  $ran = rand('2, 5');
+  $to = 'uploaded/avatar' . $ran . '.png';
+  $path = move_uploaded_file($avatar, $to);
+
+  $dsn = "mysql:host=localhost; dbname=marlin_2";
+  $pdo = new PDO($dsn, 'root', 'root');
+
+  $sql = 'UPDATE users SET avatar=:avatar WHERE id =:user_id';
+  $stmt->$pdo->prepare($sql);
+  $stmt->execute(['avatar' => $to, 'user_id' => $user_id]);
+
+}
+
+function set_social_links($vk, $tg, $ins, $user_id)
+{
+  $dsn = "mysql:host=localhost; dbname=marlin_2";
+  $pdo = new PDO($dsn, 'root', 'root');
+
+  $sql = 'UPDATE users SET vk=:vk, tg=:tg, ins=:ins WHERE id =:user_id';
+  $stmt->$pdo->prepare($sql);
+  $stmt->execute(['vk' => $vk, 'tg' => $tg, 'ins' => $ins, 'user_id' => $user_id]);
+}
