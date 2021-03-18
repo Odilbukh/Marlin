@@ -2,7 +2,8 @@
 session_start();
 require_once 'functions.php';
 
-$id = $_SESSION['user_id']['id'];
+$id = $_SESSION['user_data']['id'];
+
 $fullname = $_POST['fullname'];
 $job = $_POST['job'];
 $phone = $_POST['phone'];

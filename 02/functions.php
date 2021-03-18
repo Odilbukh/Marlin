@@ -182,3 +182,13 @@ function is_author($logged_user_id, $edit_user_id)
         return true;
     }
 }
+
+function edit_credentials($email, $password, $id)
+{
+    $dsn = "mysql:host=localhost; dbname=marlin_2";
+    $pdo = new PDO($dsn, 'root', 'root');
+
+    $sql = "UPDATE users SET email=:email, password=:password WHERE id =:id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT), 'id' => $id]);
+}

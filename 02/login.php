@@ -11,7 +11,6 @@ if ($auth == false)
 {
     set_flash_message('danger', "E-mail и пароль не правильные!");
     redirect_to('page_login.php');
-    exit;
 }
 
 else

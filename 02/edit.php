@@ -3,8 +3,8 @@ session_start();
 require_once 'functions.php';
 
 $auth_user = $_SESSION['log-in'];
-$edit_user_id = $_GET['id'];
 $logged_user_id = $auth_user['id'];
+$edit_user_id = $_GET['id'];
 
 if (is_log_in() == false)
 {
@@ -14,7 +14,7 @@ else
 {
     if (!is_admin($auth_user['email']))
     {
-        if (is_author($auth_user['id'], $edit_user_id) == false)
+        if (is_author($logged_user_id, $edit_user_id) == false)
         {
             set_flash_message('danger', 'Можно редактировать только свой профиль');
             redirect_to('users.php');
@@ -24,7 +24,7 @@ else
 }
 
 $user = get_user_by_id($edit_user_id);
-$_SESSION['user_id'] = $user;
+$_SESSION['user_data'] = $user;
 
 ?>
 <!DOCTYPE html>

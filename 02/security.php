@@ -1,3 +1,33 @@
+<?php
+session_start();
+require_once 'functions.php';
+
+$auth_user = $_SESSION['log-in'];
+$logged_user_id = $auth_user['id'];
+$edit_user_id = $_GET['id'];
+
+
+if (is_log_in() == false)
+{
+    redirect_to('page_login.php');
+}
+else
+{
+    if (!is_admin($auth_user['email']))
+    {
+        if (is_author($logged_user_id, $edit_user_id) == false)
+        {
+            set_flash_message('danger', 'Можно редактировать только свой профиль');
+            redirect_to('users.php');
+        }
+
+    }
+}
+
+$user = get_user_by_id($edit_user_id);
+$_SESSION['user_data'] = $user;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +53,15 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="page_login.php">Войти</a>
+                    <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
                 </li>
+                <?php if (is_log_in() == false): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page_login.php">Войти</a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a>
+                    <a class="nav-link" href="logout.php">Выйти</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +73,9 @@
             </h1>
 
         </div>
-        <form action="">
+        <?= display_flesh_message(); ?>
+
+        <form action="edit_security.php" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -50,13 +87,13 @@
                                 <!-- email -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Email</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="john@example.com">
+                                    <input type="text" id="simpleinput" name="email" class="form-control" value="<?= $user['email']; ?>">
                                 </div>
 
                                 <!-- password -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Пароль</label>
-                                    <input type="password" id="simpleinput" class="form-control">
+                                    <input type="password" name="password" id="simpleinput" class="form-control">
                                 </div>
 
                                 <!-- password confirmation-->
