@@ -1,5 +1,29 @@
 <?php
 session_start();
+require_once 'functions.php';
+$auth_user = $_SESSION['log-in'];
+
+$edit_user_id = $_GET['id'];
+$logged_user_id = $auth_user['id'];
+
+if (is_log_in() == false)
+{
+    redirect_to('page_login.php');
+}
+else
+{
+    if (!is_admin($auth_user['email']))
+    {
+        if (is_author($auth_user['id'], $edit_user_id) == false)
+        {
+            set_flash_message('danger', 'Можно редактировать только свой профиль');
+            redirect_to('users.php');
+        }
+
+    }
+}
+
+$user = get_user_by_id($edit_user_id)
 
 ?>
 <!DOCTYPE html>
@@ -35,7 +59,7 @@ session_start();
                 </li>
               <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php"  >Выйти</a>
+                    <a class="nav-link" href="logout.php">Выйти</a>
                 </li>
             </ul>
         </div>
@@ -47,7 +71,7 @@ session_start();
             </h1>
 
         </div>
-        <form action="">
+        <form action="edit_user.php" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -59,28 +83,28 @@ session_start();
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Иван иванов">
+                                    <input type="text" id="simpleinput" name="fullname" class="form-control" value="<?= $user['fullname']; ?>">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Marlin Веб-разработчик">
+                                    <input type="text" id="simpleinput" name="job" class="form-control" value="<?= $user['job']; ?>">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="8 888 8888 88">
+                                    <input type="text" id="simpleinput" name="phone" class="form-control" value="<?= $user['phone']; ?>">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Адрес</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Восточные Королевства, Штормград">
+                                    <input type="text" id="simpleinput" name="adres" class="form-control" value="<?= $user['adres']; ?>">
                                 </div>
                                 <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                    <button class="btn btn-warning">Редактировать</button>
+                                    <button class="btn btn-warning" type="submit">Редактировать</button>
                                 </div>
                             </div>
                         </div>

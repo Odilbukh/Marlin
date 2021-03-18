@@ -23,7 +23,7 @@ function add_user($email, $password)
 
     $sql = 'INSERT INTO users(email, password) VALUES (:email, :password)';
     $stmt = $pdo->prepare($sql);
-    $result = $stmt->execute(['email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT)]);
+    $stmt->execute(['email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT)]);
 
     return $pdo->lastInsertId();
 
@@ -115,14 +115,14 @@ function get_users_list()
     return $users_list;
 }
 
-function edit_user_info($fullname, $company, $phone, $adres, $user_id)
+function edit_user_info($fullname, $job, $phone, $adres, $user_id)
 {
   $dsn = "mysql:host=localhost; dbname=marlin_2";
   $pdo = new PDO($dsn, 'root', 'root');
 
-  $sql = "UPDATE users SET fullname=:fullname, company=:company, phone=:phone, adres=:adres WHERE id =:user_id";
+  $sql = "UPDATE users SET fullname=:fullname, job=:job, phone=:phone, adres=:adres WHERE id =:user_id";
   $stmt= $pdo->prepare($sql);
-  $stmt->execute(['fullname' => $fullname, 'company' => $company, 'phone' => $phone, 'adres' => $adres, 'user_id' => $user_id]);
+  $stmt->execute(['fullname' => $fullname, 'job' => $job, 'phone' => $phone, 'adres' => $adres, 'user_id' => $user_id]);
 }
 
 function set_status($status, $user_id)
@@ -157,4 +157,28 @@ function set_social_links($vk, $tg, $ins, $user_id)
   $sql = "UPDATE users SET vk=:vk, tg=:tg, ins=:ins WHERE id =:user_id";
   $stmt = $pdo->prepare($sql);
   $stmt->execute(['vk' => $vk, 'tg' => $tg, 'ins' => $ins, 'user_id' => $user_id]);
+}
+
+function get_user_by_id($id)
+{
+    $dsn = "mysql:host=localhost; dbname=marlin_2";
+    $pdo = new PDO($dsn, 'root', 'root');
+
+    $sql = "SELECT * FROM users WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id'=>$id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $user;
+}
+
+function is_author($logged_user_id, $edit_user_id)
+{
+    if ($logged_user_id !== $edit_user_id)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }

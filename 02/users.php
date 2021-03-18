@@ -115,7 +115,7 @@ $users_list = get_users_list();
                                     </div>
                                     <?php endif; ?>
 
-                                    <span class="text-truncate text-truncate-xl"><?= $user['profesion']; ?>, <?= $user['company']; ?></span>
+                                    <span class="text-truncate text-truncate-xl"><?= $user['job']; ?></span>
                                 </div>
                                 <button class="js-expand-btn btn btn-sm btn-default d-none" data-toggle="collapse" data-target="#c_1 > .card-body + .card-body" aria-expanded="false">
                                     <span class="collapsed-hidden">+</span>

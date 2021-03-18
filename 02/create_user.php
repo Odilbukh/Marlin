@@ -75,7 +75,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input type="text" id="simpleinput" name="company" class="form-control">
+                                    <input type="text" id="simpleinput" name="job" class="form-control">
                                 </div>
 
                                 <!-- tel -->
