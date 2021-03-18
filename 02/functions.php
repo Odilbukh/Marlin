@@ -192,3 +192,4 @@ function edit_credentials($email, $password, $id)
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT), 'id' => $id]);
 }
+
