@@ -39,10 +39,15 @@ $user = get_user_by_id($user_id);
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Войти</a>
+                        <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
                     </li>
+                    <?php if (is_log_in() == false): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="page_login.php">Войти</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Выйти</a>
+                        <a class="nav-link" href="logout.php">Выйти</a>
                     </li>
                 </ul>
             </div>
