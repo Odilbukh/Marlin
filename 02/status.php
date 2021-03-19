@@ -1,3 +1,41 @@
+<?php
+session_start();
+require_once 'functions.php';
+$auth_user = $_SESSION['log-in'];
+$id = $_GET['id'];
+$user_data = get_user_by_id($id);
+$_SESSION['user_data'] = $user_data;
+
+$current_status = $user_data['status'];
+
+$list_of_status = [
+    ['name' => 'Онлайн',
+     'key' => 'success'],
+    ['name' => 'Отошел',
+     'key' => 'warning'],
+    ['name' => 'Не беспокоить',
+     'key' => 'danger' ]
+];
+
+if (is_log_in() == false)
+{
+    redirect_to('page_login.php');
+}
+else
+{
+    if (!is_admin($auth_user['email']))
+    {
+        if (is_author($auth_user['email'], $user_data['email']) == false)
+        {
+            set_flash_message('danger', 'Можно редактировать только свой профиль');
+            redirect_to('users.php');
+        }
+
+    }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +61,15 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="page_login.php">Войти</a>
+                    <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
                 </li>
+                <?php if (is_log_in() == false): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page_login.php">Войти</a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a>
+                    <a class="nav-link" href="logout.php"  >Выйти</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +81,7 @@
             </h1>
 
         </div>
-        <form action="">
+        <form action="set_status.php" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -52,15 +95,15 @@
                                         <!-- status -->
                                         <div class="form-group">
                                             <label class="form-label" for="example-select">Выберите статус</label>
-                                            <select class="form-control" id="example-select">
-                                                <option>Онлайн</option>
-                                                <option>Отошел</option>
-                                                <option>Не беспокоить</option>
+                                            <select class="form-control" name="status" id="example-select">
+                                                <?php foreach ($list_of_status as $item): ?>
+                                                <option value="<?= $item['key']; ?>" <?php if ($current_status == $item['key']) echo "selected"; ?>><?= $item['name']; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                        <button class="btn btn-warning">Set Status</button>
+                                        <button class="btn btn-warning" type="submit">Set Status</button>
                                     </div>
                                 </div>
                             </div>

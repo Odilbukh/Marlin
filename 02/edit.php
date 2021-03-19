@@ -3,6 +3,7 @@ session_start();
 require_once 'functions.php';
 
 $auth_user = $_SESSION['log-in'];
+$id = $_GET['id'];
 $logged_user_id = $auth_user['id'];
 $edit_user_id = $_GET['id'];
 
@@ -22,9 +23,6 @@ else
 
     }
 }
-
-$user = get_user_by_id($edit_user_id);
-$_SESSION['user_data'] = $user;
 
 ?>
 <!DOCTYPE html>

@@ -25,9 +25,6 @@ else
     }
 }
 
-$user = get_user_by_id($id);
-$_SESSION['user_data'] = $user;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +85,7 @@ $_SESSION['user_data'] = $user;
                                 <!-- email -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Email</label>
-                                    <input type="text" id="simpleinput" name="email" class="form-control" value="<?= $user['email']; ?>">
+                                    <input type="text" id="simpleinput" name="email" class="form-control" value="<?= $user_data['email']; ?>">
                                 </div>
 
                                 <!-- password -->

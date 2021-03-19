@@ -101,10 +101,10 @@ $users_list = get_users_list();
                                         <a class="dropdown-item" href="security.php?id=<?=$user['id'];?>">
                                             <i class="fa fa-lock"></i>
                                         Безопасность</a>
-                                        <a class="dropdown-item" href="status.html">
+                                        <a class="dropdown-item" href="status.php?id=<?=$user['id'];?>">
                                             <i class="fa fa-sun"></i>
                                         Установить статус</a>
-                                        <a class="dropdown-item" href="media.html">
+                                        <a class="dropdown-item" href="media.php?id=<?=$user['id'];?>">
                                             <i class="fa fa-camera"></i>
                                             Загрузить аватар
                                         </a>
