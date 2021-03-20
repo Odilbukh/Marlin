@@ -7,11 +7,13 @@ $_SESSION['user_data'] = $user_data;
 
 $user_id = $_SESSION['user_data']['id'];
 $logged_user = $_SESSION['log-in'];
+$user_avatar = $logged_user['avatar'];
 $is_admin = is_admin($logged_user['email']);
 
 if ( $user_id == $logged_user['id'] || $is_admin == true)
 {
     delete_user($user_id);
+    unlink($_SESSION['user_data']['avatar']);
     if ($user_id == $logged_user['id'])
     {
         session_destroy();
@@ -21,4 +23,3 @@ if ( $user_id == $logged_user['id'] || $is_admin == true)
     set_flash_message("success","Профиль удалён!");
     redirect_to('users.php');
 }
-
