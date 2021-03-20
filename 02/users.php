@@ -8,6 +8,8 @@ if (is_log_in() == false)
 }
 $auth_user = $_SESSION['log-in'];
 $users_list = get_users_list();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +110,7 @@ $users_list = get_users_list();
                                             <i class="fa fa-camera"></i>
                                             Загрузить аватар
                                         </a>
-                                        <a href="#" class="dropdown-item" onclick="return confirm('are you sure?');">
+                                        <a href="delete_user.php?id=<?=$user['id'];?>" class="dropdown-item" onclick="return confirm('are you sure?');">
                                             <i class="fa fa-window-close"></i>
                                             Удалить
                                         </a>

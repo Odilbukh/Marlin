@@ -207,3 +207,13 @@ function has_image($id)
         return true;
     }
 }
+
+function delete_user($id)
+{
+    $dsn = "mysql:host=localhost; dbname=marlin_2";
+    $pdo = new PDO($dsn, 'root', 'root');
+
+    $sql = "DELETE FROM users WHERE id = :id ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $id]);
+}
