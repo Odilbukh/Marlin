@@ -137,15 +137,17 @@ function set_status($status, $user_id)
 
 function upload_avatar($avatar, $user_id)
 {
-    $to = 'uploaded/avatar_' . uniqid() . '.png';
-    move_uploaded_file($avatar, $to);
+    if (!empty($avatar)) {
+        $to = 'uploaded/avatar_' . $user_id . '.png';
+        move_uploaded_file($avatar, $to);
 
-    $dsn = "mysql:host=localhost; dbname=marlin_2";
-    $pdo = new PDO($dsn, 'root', 'root');
+        $dsn = "mysql:host=localhost; dbname=marlin_2";
+        $pdo = new PDO($dsn, 'root', 'root');
 
-    $sql = "UPDATE users SET avatar=:avatar WHERE id =:user_id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['avatar' => $to, 'user_id' => $user_id]);
+        $sql = "UPDATE users SET avatar=:avatar WHERE id =:user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['avatar' => $to, 'user_id' => $user_id]);
+    }
 
 }
 
@@ -191,4 +193,17 @@ function edit_credentials($email, $password, $id)
     $sql = "UPDATE users SET email=:email, password=:password WHERE id =:id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT), 'id' => $id]);
+}
+
+function has_image($id)
+{
+    $user = get_user_by_id($id);
+    if ($user['avatar'] == NULL)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }

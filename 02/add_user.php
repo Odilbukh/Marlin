@@ -15,7 +15,6 @@ $vk = $_POST['vk'];
 $tg = $_POST['tg'];
 $ins = $_POST['ins'];
 
-
 if(!get_user_by_email($email))
 {
   $user_id = add_user($email, $password);
