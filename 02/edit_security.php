@@ -5,7 +5,7 @@ require_once 'functions.php';
 $email = $_POST["email"];
 $password = $_POST["password"];
 $id = $_SESSION['user_data']['id'];
-$username = $_SESSION['user_data']['fullname'];
+$username = $_SESSION['user_data']['username'];
 
 $exist_Email = get_user_by_email($email);
 

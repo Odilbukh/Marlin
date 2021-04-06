@@ -35,7 +35,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
             </ul>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
+                  <a class="nav-link" href="#"><?= $auth_user['username']; ?></a>
               </li>
               <?php if (is_log_in() == false): ?>
                 <li class="nav-item">
@@ -69,7 +69,7 @@ if (is_null(is_log_in()) || !is_admin($auth_user['email']))
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" id="simpleinput" name="fullname" class="form-control">
+                                    <input type="text" id="simpleinput" name="username" class="form-control">
                                 </div>
 
                                 <!-- title -->

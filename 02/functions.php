@@ -115,14 +115,14 @@ function get_users_list()
     return $users_list;
 }
 
-function edit_user_info($fullname, $job, $phone, $adres, $user_id)
+function edit_user_info($username, $job, $phone, $adres, $user_id)
 {
   $dsn = "mysql:host=localhost; dbname=marlin_2";
   $pdo = new PDO($dsn, 'root', 'root');
 
-  $sql = "UPDATE users SET fullname=:fullname, job=:job, phone=:phone, adres=:adres WHERE id =:user_id";
+  $sql = "UPDATE users SET username=:username, job=:job, phone=:phone, adres=:adres WHERE id =:user_id";
   $stmt= $pdo->prepare($sql);
-  $stmt->execute(['fullname' => $fullname, 'job' => $job, 'phone' => $phone, 'adres' => $adres, 'user_id' => $user_id]);
+  $stmt->execute(['username' => $username, 'job' => $job, 'phone' => $phone, 'adres' => $adres, 'user_id' => $user_id]);
 }
 
 function set_status($status, $user_id)

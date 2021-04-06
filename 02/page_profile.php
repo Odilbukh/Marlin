@@ -39,7 +39,7 @@ $user = get_user_by_id($user_id);
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
+                        <a class="nav-link" href="#"><?= $auth_user['username']; ?></a>
                     </li>
                     <?php if (is_log_in() == false): ?>
                         <li class="nav-item">
@@ -55,7 +55,7 @@ $user = get_user_by_id($user_id);
         <main id="js-page-content" role="main" class="page-content mt-3">
             <div class="subheader">
                 <h1 class="subheader-title">
-                    <i class='subheader-icon fal fa-user'></i> <?= $user['fullname']; ?>
+                    <i class='subheader-icon fal fa-user'></i> <?= $user['username']; ?>
                 </h1>
             </div>
             <div class="row">
@@ -67,7 +67,7 @@ $user = get_user_by_id($user_id);
                                 <div class="d-flex flex-column align-items-center justify-content-center p-4">
                                     <img src="<?= $user['avatar']; ?>" class="rounded-circle shadow-2 img-thumbnail" alt="">
                                     <h5 class="mb-0 fw-700 text-center mt-3">
-                                        <?= $user['fullname']; ?>
+                                        <?= $user['username']; ?>
                                         <small class="text-muted mb-0"><?= $user['adres']; ?></small>
                                     </h5>
                                     <div class="mt-4 text-center demo">

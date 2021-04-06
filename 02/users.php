@@ -37,7 +37,7 @@ $users_list = get_users_list();
                 </ul>
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                      <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
+                      <a class="nav-link" href="#"><?= $auth_user['username']; ?></a>
                   </li>
                   <?php if (is_log_in() == false): ?>
                     <li class="nav-item">
@@ -80,7 +80,7 @@ $users_list = get_users_list();
             <div class="row" id="js-contacts">
                 <?php foreach ($users_list as $user):  ?>
                 <div class="col-xl-4">
-                    <div id="c_1" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="<?= $user['fullname']; ?>">
+                    <div id="c_1" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="<?= $user['username']; ?>">
                         <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
                             <div class="d-flex flex-row align-items-center">
                                 <span class="status status-<?= $user['status']; ?> mr-3">
@@ -89,7 +89,7 @@ $users_list = get_users_list();
                                 <div class="info-card-text flex-1">
 
                                     <a <?php if (is_admin($auth_user['email']) == true || $auth_user['id'] == $user['id']): ?> href="javascript:void(0);" <?php endif; ?> class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
-                                        <?= $user['fullname']; ?>
+                                        <?= $user['username']; ?>
                                         <?php if (is_admin($auth_user['email']) == true || $auth_user['id'] == $user['id']): ?>
                                         <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                                         <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>

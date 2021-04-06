@@ -53,7 +53,7 @@ $user = get_user_by_id($edit_user_id);
             </ul>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
+                  <a class="nav-link" href="#"><?= $auth_user['username']; ?></a>
               </li>
               <?php if (is_log_in() == false): ?>
                 <li class="nav-item">
@@ -85,7 +85,7 @@ $user = get_user_by_id($edit_user_id);
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" id="simpleinput" name="fullname" class="form-control" value="<?= $user['fullname']; ?>">
+                                    <input type="text" id="simpleinput" name="username" class="form-control" value="<?= $user['username']; ?>">
                                 </div>
 
                                 <!-- title -->

@@ -61,7 +61,7 @@ else
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><?= $auth_user['fullname']; ?></a>
+                    <a class="nav-link" href="#"><?= $auth_user['username']; ?></a>
                 </li>
                 <?php if (is_log_in() == false): ?>
                     <li class="nav-item">

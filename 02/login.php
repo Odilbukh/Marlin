@@ -15,6 +15,6 @@ if ($auth == false)
 
 else
 {
-    set_flash_message('success', "Добро пожаловать " . $auth['fullname'] . "!");
+    set_flash_message('success', "Добро пожаловать " . $auth['username'] . "!");
     redirect_to('users.php');
 }
