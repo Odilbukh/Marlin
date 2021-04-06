@@ -85,7 +85,7 @@ $usersList = Database::getInstance()->results();
               <td><?= $user->username; ?></td>
               <td><?= $user->email; ?></td>
               <td>
-              	<a href="edit_user_group.php?id=<?=$user->id; ?>" class="btn btn-success">Назначить администратором</a>
+              	<a href="edit_user_group.php?id=<?=$user->id; ?>" class="btn btn-success"><?= ($user->group_id == 1) ? 'Назначить администратором' : 'Разжаловать'; ?></a>
                 <a href="../user_profile.php?id=<?=$user->id; ?>" class="btn btn-info">Посмотреть</a>
                 <a href="edit.php?id=<?=$user->id;?>" class="btn btn-warning">Редактировать</a>
                 <a href="delete.php?id=<?=$user->id;?>" class="btn btn-danger" onclick="return confirm('Вы уверены?');">Удалить</a>
