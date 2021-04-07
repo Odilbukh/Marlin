@@ -136,7 +136,7 @@ class Database {
 
     public function getAll($table) {
         $sql = "SELECT * FROM {$table}";
-        if(!$this->query($sql)) { //true если есть ошибка
+        if(!$this->query($sql)) {
             return $this;
         }
     }

@@ -1,6 +1,10 @@
 <?php
 require_once 'init.php';
 $user = new User;
+if (!$user->isLoggedIn()) {
+    Redirect::to('login.php');
+}
+
 $validate = new Validate;
 
 $validate->check($_POST, ['current_password' => ['required' => true, 'min' => 3],

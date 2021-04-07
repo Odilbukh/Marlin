@@ -1,6 +1,11 @@
 <?php
 require_once '../init.php';
 $user = new User;
+if (!$user->isLoggedIn()) {
+    if (!$user->hasPermissions('admin')) {
+        Redirect::to('../index.php');
+    }
+}
 
 $getUserID = $_GET['id'];
 $getUser = new User($getUserID);
