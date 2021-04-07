@@ -23,7 +23,7 @@ if (Input::exists()) {
         if ($validate->passed()) {
             $user->update(['username' => Input::get('username'), 'status' => Input::get('status')]);
             Session::flash('success', 'Профиль обновлен!');
-            Redirect::to('index.php');
+            Redirect::to('profile.php');
         } else {
             $danger = '';
             foreach ($validate->errors() as $error) {
