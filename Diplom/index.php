@@ -34,27 +34,6 @@ $usersList = Database::getInstance()->results();
     </div>
     <div class="row">
       <div class="col-md-12">
-
-          <?php if (Session::exists('danger')): ?>
-              <div class="alert alert-danger">
-                  <ul>
-                      <?php echo Session::flash('danger'); ?>
-                  </ul>
-              </div>
-          <?php endif;?>
-
-          <?php if (Session::exists('success')): ?>
-              <div class="alert alert-success">
-                  <?php echo Session::flash('success'); ?>
-              </div>
-          <?php endif;?>
-
-          <?php if (Session::exists('info')): ?>
-              <div class="alert alert-info">
-                  <?php echo Session::flash('info'); ?>
-              </div>
-          <?php endif;?>
-
         <h1>Пользователи</h1>
         <table class="table">
           <thead>
